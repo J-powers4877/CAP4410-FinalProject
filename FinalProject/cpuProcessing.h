@@ -15,10 +15,10 @@ class cpuProcessing
 	string sUserPhoto;
 	string sWindowName;
 
-	double scale;
-	double width;
+	double dNewWidth;
+	double dNewHeight;
 
 public:
 	void initial();
-	int windowResize(Mat mOriginal);
+	void windowResize(Mat mOriginal);
 };
