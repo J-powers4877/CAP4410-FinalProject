@@ -10,10 +10,17 @@ using namespace std;
 
 class cpuProcessing
 {
-	Mat mCPUPhoto;
+	Mat mCPUGoodPhoto;
+	Mat mCPUBadPhoto;
+	Mat mCPUGoodGray;
+	Mat mCPUBadGray;
+	Mat mXOR;
 
 	string sUserPhoto;
 	string sWindowName;
+	string sUserFile;
+
+	char cUserSave;
 
 	double dNewWidth;
 	double dNewHeight;

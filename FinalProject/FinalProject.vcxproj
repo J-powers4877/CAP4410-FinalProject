@@ -143,11 +143,9 @@
   <ItemGroup>
     <ClCompile Include="cpuProcessing.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="socketProcessing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cpuProcessing.h" />
-    <ClInclude Include="socketProcessing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

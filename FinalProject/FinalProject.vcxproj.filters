@@ -21,15 +21,9 @@
     <ClCompile Include="cpuProcessing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="socketProcessing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cpuProcessing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="socketProcessing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
