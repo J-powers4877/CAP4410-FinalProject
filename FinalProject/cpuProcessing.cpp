@@ -2,22 +2,35 @@
 
 void cpuProcessing::initial()
 {
+	/*
+	Clear the CMD Line
+	Prompt User
+	Wait for User Input
+	*/
 	system("cls");
 	cout << "Please enter the location of the non-defective photo you would like to analyse: \n";
 	cin >> sUserPhoto;
 	cin.ignore(1, '\n');
 	
+	//Read User Photo as Grayscale into Mat object
 	mCPUGoodPhoto = imread(sUserPhoto, IMREAD_GRAYSCALE);
-	threshold(mCPUGoodPhoto, mCPUGoodGray, 128, 255, THRESH_BINARY | THRESH_OTSU);
+	//Use OTSU Threshold on the User image
+	threshold(mCPUGoodPhoto, mCPUGoodGray, 0, 255, THRESH_BINARY | THRESH_OTSU);
 	
+	//Prompt User for other Photo
+	//Wait for User Input
 	cout << "Please enter the location of the potentially defective photo you would like to analyse: \n";
 	cin >> sUserPhoto;
 	cin.ignore(1, '\n');
 	
+	//Read User Photo as Grayscale into Mat Object
 	mCPUBadPhoto = imread(sUserPhoto, IMREAD_GRAYSCALE);
-	threshold(mCPUBadPhoto, mCPUBadGray, 128, 255, THRESH_BINARY | THRESH_OTSU);
+	//Use OTSU Threshold on the User image
+	threshold(mCPUBadPhoto, mCPUBadGray, 0, 255, THRESH_BINARY | THRESH_OTSU);
 	
+	//If image is too large, resize the window to account for
 	windowResize(mCPUGoodPhoto);
+	//Run Bitwise XOR on images to get differences.
 	bitwise_xor(mCPUGoodGray, mCPUBadGray, mXOR);
 	
 	system("pause");
@@ -41,27 +54,36 @@ void cpuProcessing::initial()
 	//resizeWindow(sWindowName, dNewWidth, dNewHeight);
 	//imshow(sWindowName, mCPUBadGray);
 	
+	//Display output
 	sWindowName = "Output";
 	namedWindow(sWindowName, WINDOW_NORMAL);
 	resizeWindow(sWindowName, dNewWidth, dNewHeight);
 	imshow(sWindowName, mXOR);
 	
+	//Wait for input
 	waitKey(0);
+	//Close all windows
 	destroyAllWindows();
 
+	system("cls");
+
+	//Prompt user for Save Feature
 	cout << "Would you like to save the photo?" << endl;
 	cout << "Y for yes; N for no." << endl;
 	cin >> cUserSave;
 	cin.ignore(1, '\n');
 
+	//Switch case for user input
 	switch (cUserSave)
 	{
 	case 'Y':
 	case 'y':
-		cout << "Please enter the location of the file location where you want the image saved at: \n";
+		cout << "The image will be saved with the name Output.jpg" << endl;
+		cout << "Please enter the location of the file location where you want the image saved at: " << endl;
 		cin >> sUserFile;
 		cin.ignore(1, '\n');
 
+		//Add file name to location input by user
 		sUserFile += "\\Output.JPG";
 		imwrite(sUserFile, mXOR);
 
@@ -74,6 +96,7 @@ void cpuProcessing::initial()
 	}
 }
 
+//Used to resize oversized windows.
 void cpuProcessing::windowResize(Mat mOriginal)
 {
 	if (mOriginal.cols < mOriginal.rows)
