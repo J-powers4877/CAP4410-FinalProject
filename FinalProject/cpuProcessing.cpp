@@ -3,14 +3,14 @@
 void cpuProcessing::initial()
 {
 	system("cls");
-	cout << "Please enter the location of the non-defective photo you would like to analyse: ";
+	cout << "Please enter the location of the non-defective photo you would like to analyse: \n";
 	cin >> sUserPhoto;
 	cin.ignore(1, '\n');
 	
 	mCPUGoodPhoto = imread(sUserPhoto, IMREAD_GRAYSCALE);
 	threshold(mCPUGoodPhoto, mCPUGoodGray, 128, 255, THRESH_BINARY | THRESH_OTSU);
 	
-	cout << "Please enter the location of the potentially defective photo you would like to analyse: ";
+	cout << "Please enter the location of the potentially defective photo you would like to analyse: \n";
 	cin >> sUserPhoto;
 	cin.ignore(1, '\n');
 	
@@ -58,7 +58,7 @@ void cpuProcessing::initial()
 	{
 	case 'Y':
 	case 'y':
-		cout << "Please enter the location of the file location where you want the image saved at:";
+		cout << "Please enter the location of the file location where you want the image saved at: \n";
 		cin >> sUserFile;
 		cin.ignore(1, '\n');
 
@@ -66,6 +66,10 @@ void cpuProcessing::initial()
 		imwrite(sUserFile, mXOR);
 
 		printf("The photo was saved as %s .", sUserFile);
+		system("pause");
+	case 'N':
+	case 'n':
+		cout << "Image not saved." << endl;
 		system("pause");
 	}
 }
